@@ -7,62 +7,33 @@
 
 <style>
 *{box-sizing:border-box;font-family:"Segoe UI",Tahoma,Arial}
-body{
-    margin:0;
-    direction:rtl;
-    background:#f1f5f9;
-}
-
-/* عام */
+body{margin:0;direction:rtl;background:#f1f5f9}
 .hidden{display:none}
 h1,h2{text-align:center}
+
 button{
-    padding:12px;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
+ padding:12px;border:none;border-radius:10px;
+ font-size:16px;cursor:pointer
 }
 input,select,textarea{
-    width:100%;
-    padding:12px;
-    margin:6px 0;
-    border-radius:10px;
-    border:1px solid #ccc;
-    font-size:15px;
+ width:100%;padding:12px;margin:6px 0;
+ border-radius:10px;border:1px solid #ccc;font-size:15px
 }
 .box{
-    background:#fff;
-    margin:10px;
-    padding:15px;
-    border-radius:14px;
-    box-shadow:0 4px 10px rgba(0,0,0,.08);
+ background:#fff;margin:10px;padding:15px;
+ border-radius:14px;box-shadow:0 4px 10px rgba(0,0,0,.08)
 }
 
 /* تسجيل الدخول */
 .login{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#6366f1,#3b82f6);
+ min-height:100vh;display:flex;justify-content:center;align-items:center;
+ background:linear-gradient(135deg,#6366f1,#3b82f6)
 }
 .login-card{
-    background:#fff;
-    width:90%;
-    max-width:380px;
-    padding:25px;
-    border-radius:24px;
-    text-align:center;
+ background:#fff;width:90%;max-width:380px;
+ padding:25px;border-radius:24px;text-align:center
 }
-.logo{
-    font-size:40px;
-    margin-bottom:10px;
-}
-.login-card button{
-    background:#4f46e5;
-    color:#fff;
-    font-weight:600;
-}
+.login-card button{background:#4f46e5;color:#fff;font-weight:600}
 
 /* أزرار */
 .logout{background:#ef4444;color:#fff;margin:10px}
@@ -78,25 +49,25 @@ td{background:#f8fafc}
 
 /* موبايل */
 @media(max-width:768px){
-    table,thead,tbody,tr,td{display:block}
-    thead{display:none}
-    tr{margin-bottom:10px}
-    td{display:flex;justify-content:space-between}
-    td::before{content:attr(data-label);font-weight:600}
+ table,thead,tbody,tr,td{display:block}
+ thead{display:none}
+ tr{margin-bottom:10px}
+ td{display:flex;justify-content:space-between}
+ td::before{content:attr(data-label);font-weight:600}
 }
 </style>
 </head>
+
 <body>
 
 <!-- تسجيل الدخول -->
 <div id="loginBox" class="login">
-<div class="login-card">
-    <div class="logo">🏫</div>
-    <h2>مدرسة الشيخ سالم الصائغي</h2>
-    <input id="username" placeholder="اسم المستخدم">
-    <input id="password" type="password" placeholder="كلمة المرور">
-    <button onclick="login()">دخول</button>
-</div>
+ <div class="login-card">
+  <h2>مدرسة الشيخ سالم الصائغي</h2>
+  <input id="username" placeholder="اسم المستخدم">
+  <input id="password" type="password" placeholder="كلمة المرور">
+  <button onclick="login()">دخول</button>
+ </div>
 </div>
 
 <!-- لوحة المسؤول -->
@@ -107,7 +78,7 @@ td{background:#f8fafc}
 <div class="box">
 <h2>إدارة الصفوف</h2>
 <textarea id="newClass" rows="3" placeholder="كل صف في سطر"></textarea>
-<button class="add" onclick="addClass()">إضافة صفوف</button>
+<button class="add" onclick="addClass()">إضافة</button>
 <select id="classList"></select>
 <input id="editClassName" placeholder="اسم جديد">
 <button class="edit" onclick="editClass()">تعديل</button>
@@ -118,7 +89,7 @@ td{background:#f8fafc}
 <h2>إدارة الطلاب</h2>
 <select id="studentClass" onchange="loadAdminStudents()"></select>
 <textarea id="studentName" rows="3" placeholder="كل طالب في سطر"></textarea>
-<button class="add" onclick="addStudent()">إضافة طلاب</button>
+<button class="add" onclick="addStudent()">إضافة</button>
 <select id="studentList"></select>
 <input id="editStudentName" placeholder="اسم جديد">
 <button class="edit" onclick="editStudent()">تعديل</button>
@@ -138,8 +109,8 @@ td{background:#f8fafc}
 
 <select id="period">
 <option>الحصة 1</option><option>الحصة 2</option><option>الحصة 3</option>
-<option>الحصة 4</option><option>الحصة 5</option><option>الحصة 6</option>
-<option>الحصة 7</option>
+<option>الحصة 4</option><option>الحصة 5</option>
+<option>الحصة 6</option><option>الحصة 7</option>
 </select>
 
 <select id="status">
@@ -187,11 +158,11 @@ function save(){
 function login(){
  loginBox.classList.add("hidden");
  if(username.value===ADMIN_USER && password.value===ADMIN_PASS){
-   adminPanel.classList.remove("hidden");
-   refreshAdmin();
+  adminPanel.classList.remove("hidden");
+  refreshAdmin();
  }else{
-   teacherPanel.classList.remove("hidden");
-   refreshTeacher();
+  teacherPanel.classList.remove("hidden");
+  refreshTeacher();
  }
 }
 
@@ -204,8 +175,8 @@ function logout(){
 function refreshAdmin(){
  classList.innerHTML=""; studentClass.innerHTML="";
  Object.keys(classes).forEach(c=>{
-   classList.innerHTML+=`<option>${c}</option>`;
-   studentClass.innerHTML+=`<option>${c}</option>`;
+  classList.innerHTML+=`<option>${c}</option>`;
+  studentClass.innerHTML+=`<option>${c}</option>`;
  });
  loadAdminStudents();
 }
@@ -235,7 +206,9 @@ function loadAdminStudents(){
 }
 
 function addStudent(){
- classes[studentClass.value].push(...studentName.value.split("\n").map(v=>v.trim()).filter(v=>v));
+ classes[studentClass.value].push(
+  ...studentName.value.split("\n").map(v=>v.trim()).filter(v=>v)
+ );
  save(); refreshAdmin(); studentName.value="";
 }
 
@@ -258,7 +231,9 @@ function refreshTeacher(){
   attendanceClass.innerHTML+=`<option>${c}</option>`;
   reportClass.innerHTML+=`<option>${c}</option>`;
  });
+ attendanceClass.selectedIndex=0;
  loadAttendanceStudents();
+ renderAttendance();
 }
 
 function loadAttendanceStudents(){
@@ -269,6 +244,10 @@ function loadAttendanceStudents(){
 }
 
 function addAttendance(){
+ if(!date.value || !attendanceStudent.value){
+  alert("يرجى اختيار الطالب والتاريخ");
+  return;
+ }
  attendance.push({
   class:attendanceClass.value,
   student:attendanceStudent.value,
@@ -283,35 +262,41 @@ function renderAttendance(){
  attTable.innerHTML="";
  attendance.forEach(r=>{
   attTable.innerHTML+=`
-   <tr>
-    <td data-label="الصف">${r.class}</td>
-    <td data-label="الطالب">${r.student}</td>
-    <td data-label="التاريخ">${r.date}</td>
-    <td data-label="الحصة">${r.period}</td>
-    <td data-label="الحالة">${r.status}</td>
-   </tr>`;
+  <tr>
+   <td data-label="الصف">${r.class}</td>
+   <td data-label="الطالب">${r.student}</td>
+   <td data-label="التاريخ">${r.date}</td>
+   <td data-label="الحصة">${r.period}</td>
+   <td data-label="الحالة">${r.status}</td>
+  </tr>`;
  });
 }
 
 function generateReport(){
  let cls=reportClass.value, m=reportMonth.value;
+ if(!m){alert("اختر الشهر");return;}
  let count={};
  attendance.forEach(r=>{
   if(r.class===cls && r.status==="غائب" && r.date.startsWith(m)){
-   count[r.student]=(count[r.student]||new Set()).add(r.date);
+   if(!count[r.student])count[r.student]=new Set();
+   count[r.student].add(r.date);
   }
  });
  reportBody.innerHTML="";
  Object.keys(count).forEach(s=>{
   let days=count[s].size;
   reportBody.innerHTML+=`
-   <tr style="color:${days>=5?'red':'green'}">
-    <td>${s}</td>
-    <td>${days}</td>
-    <td>${days>=5?'⚠':'✔'}</td>
-   </tr>`;
+  <tr style="color:${days>=5?'red':'green'}">
+   <td>${s}</td><td>${days}</td>
+   <td>${days>=5?'⚠ غياب مرتفع':'✔ منتظم'}</td>
+  </tr>`;
  });
 }
+
+window.onload=()=>{
+ if(date) date.value=new Date().toISOString().split("T")[0];
+ renderAttendance();
+};
 </script>
 
 </body>
